@@ -1,0 +1,12 @@
+{
+    "ID": "F8775498-BD72-4ECA-893F-B33863D81CB5",
+    "ActionKeyword": "u",
+    "Name": "Unity Engine",
+    "Description": "Launch Unity Projects",
+    "Author": "LeLocTai",
+    "Version": "1.0.0",
+    "Language": "csharp",
+    "Website": "https://github.com/LeLocTai/Flow.Launcher.Plugin.UnityEngine",
+    "IcoPath": "Images/unity.png",
+    "ExecuteFileName": "Flow.Launcher.Plugin.UnityEngine.dll"
+}

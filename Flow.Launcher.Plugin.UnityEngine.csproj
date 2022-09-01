@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0-windows</TargetFramework>
+        <AssemblyName>Flow.Launcher.Plugin.UnityEngine</AssemblyName>
+        <PackageId>Flow.Launcher.Plugin.UnityEngine</PackageId>
+        <Authors>LeLocTai</Authors>
+        <PackageProjectUrl>https://github.com/LeLocTai/Flow.Launcher.Plugin.UnityEngine</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/LeLocTai/Flow.Launcher.Plugin.UnityEngine</RepositoryUrl>
+        <PackageTags>flow-launcher flow-plugin</PackageTags>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <LangVersion>10</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DebugSymbols>false</DebugSymbols>
+        <DebugType>None</DebugType>
+        <OutputPath>bin\Release</OutputPath>
+        <DocumentationFile />
+        <NoWarn>1701;1702;CS1591</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>portable</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>..\Flow.Launcher\Output\Debug\UserData\Plugins\Flow.Launcher.Plugin.UnityEngine\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <Prefer32Bit>false</Prefer32Bit>
+        <NoWarn>1701;1702;CS1591</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="plugin.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="Images\*.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Flow.Launcher.Plugin" Version="2.1.1" />
+    </ItemGroup>
+    
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+        <Exec Command="taskkill /f /fi &quot;IMAGENAME eq Flow.Launcher.exe&quot;" />
+    </Target>
+
+</Project>
