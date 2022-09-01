@@ -35,6 +35,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Content Include=".github\workflows\publish.yml" />
         <Content Include="plugin.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
