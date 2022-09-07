@@ -29,6 +29,9 @@ public class UnityEngine : IAsyncPlugin, IAsyncReloadable, IContextMenu
 
     public async Task ReloadDataAsync()
     {
+        projects.Clear();
+        editors.Clear();
+
         hubExePath = Path.Join((string?)Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Unity Technologies\Hub",
                                                           "InstallLocation", null) ?? "",
                                "Unity Hub.exe");
