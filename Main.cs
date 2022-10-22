@@ -101,7 +101,8 @@ public class UnityEngine : IAsyncPlugin, IAsyncReloadable, IContextMenu
             projectPaths.UnionWith(unityRegKey.GetValueNames()
                                               .Where(v => v.StartsWith("RecentlyUsedProjectPaths-"))
                                               .Select(v => (byte[])unityRegKey.GetValue(v)!)
-                                              .Select(b => Encoding.UTF8.GetString(b)));
+                                              .Select(b => Encoding.UTF8.GetString(b))
+                                              .Select(p => p.Replace(@"/", @"\")));
         }
         else
         {
