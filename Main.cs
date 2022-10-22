@@ -121,21 +121,23 @@ public class UnityEngine : IAsyncPlugin, IAsyncReloadable, IContextMenu
             var results = projects.Select(p => new Result {
                 ContextData = p,
                 Title       = p.Name,
-                SubTitle    = $"{(p.IsFavorite ? "★ " : "  ")}{p.Version}\t{p.Path}",
-                IcoPath     = "Images/unity.png",
-                Action      = _ => OnResultAction(p),
+                SubTitle = $"{(p.IsFavorite ? "★ " : "  ")}" +
+                           $"{(p.IsVersionExists ? " " : "❌")}" +
+                           $"{p.Version,-12}\t" +
+                           $"{p.Path}",
+                IcoPath = "Images/unity.png",
+                Action  = _ => OnResultAction(p),
             });
 
             if (query.Search != "")
             {
                 results = results.Select(r =>
-                                  {
-                                      var project = (Project)r.ContextData;
-                                      var match   = context.API.FuzzySearch(query.Search, project.Name);
-                                      r.Score = match.Score;
-                                      return r;
-                                  })
-                                 .Where(r => r.Score > 0);
+                {
+                    var project = (Project)r.ContextData;
+                    var match   = context.API.FuzzySearch(query.Search, project.Name);
+                    r.Score = match.Score;
+                    return r;
+                }).Where(r => r.Score > 0);
             }
 
             results = results.Select(r =>
@@ -215,11 +217,12 @@ public class UnityEngine : IAsyncPlugin, IAsyncReloadable, IContextMenu
         var version         = versionData.First(d => d[0] == "m_EditorVersion")[1].Trim();
 
         return new Project {
-            Name         = Path.GetFileName(path),
-            Path         = path,
-            Version      = version,
-            DateModified = File.GetLastWriteTime(path),
-            IsFavorite   = favoriteProjects.Contains(path)
+            Name            = Path.GetFileName(path),
+            Path            = path,
+            Version         = version,
+            IsVersionExists = editors.ContainsKey(version),
+            DateModified    = File.GetLastWriteTime(path),
+            IsFavorite      = favoriteProjects.Contains(path)
         };
     }
 
