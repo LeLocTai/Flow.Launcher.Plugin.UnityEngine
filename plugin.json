@@ -4,7 +4,7 @@
     "Name": "Unity Engine",
     "Description": "Launch Unity Projects",
     "Author": "LeLocTai",
-    "Version": "1.0.1",
+    "Version": "1.0.2",
     "Language": "csharp",
     "Website": "https://github.com/LeLocTai/Flow.Launcher.Plugin.UnityEngine",
     "IcoPath": "Images/unity.png",
