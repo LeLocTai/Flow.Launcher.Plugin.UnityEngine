@@ -155,7 +155,8 @@ public class UnityEngine : IAsyncPlugin, IAsyncReloadable, IContextMenu
 
     bool OnResultAction(Project project)
     {
-        var exePath = (string?)Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "UnityHub");
+        var exePath = hubExePath;
+
         if (editors.TryGetValue(project.Version, out var editor))
         {
             exePath = editor.Path;
